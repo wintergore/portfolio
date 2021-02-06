@@ -5,4 +5,4 @@ coverage
 dist
 pnp-e2e
 .cache
-.temp
+src/.temp
