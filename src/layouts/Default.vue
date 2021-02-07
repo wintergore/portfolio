@@ -1,32 +1,88 @@
 <template>
   <div class="layout">
     <main-menu />
-    <transition name="fade">
-      <router-view/> 
+    <transition name="overlay-up-full" mode="out-in">
+      <router-view />
     </transition>
+    <div class="overlay-top"></div>
+    <div class="overlay-right"></div>
+    <div class="overlay-bottom"></div>
+    <div class="overlay-left"></div>
   </div>
 </template>
 
 <script>
-  import MainMenu from '~/components/MainMenu';
-  export default {
-    components: {
-      MainMenu,
-    },
-  };
+import MainMenu from "~/components/MainMenu";
+export default {
+  components: {
+    MainMenu,
+  },
+};
 </script>
 
 <style>
-  .fade-enter-active, .fade-leave-active {
-    transition-property: opacity;
-    transition-duration: 0.5s;
-  }
+:root {
+  --overlay-bg: #1867c0;
+  --transition-duration: 0.35s;
+}
 
-  .fade-enter-active {
-    transition-delay: 0.5s;
-  }
+/* overlay-down */
+.overlay-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100vw;
+  background: var(--overlay-bg);
+  transition-duration: var(--transition-duration);
+}
 
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
+.overlay-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100vw;
+  background: var(--overlay-bg);
+  transition-duration: var(--transition-duration);
+}
+
+/* overlay-top.scss */
+.overlay-up-full-enter ~ .overlay-bottom {
+  height: 100vh;
+}
+
+.overlay-up-full-enter-active ~ .overlay-bottom,
+.overlay-up-full-leave-active ~ .overlay-bottom {
+  height: 100vh;
+}
+
+.overlay-up-full-enter-active ~ .overlay-bottom {
+  transition-timing-function: ease-in;
+}
+
+.overlay-up-full-enter-active ~ .overlay-bottom,
+.overlay-up-full-enter-to ~ .overlay-bottom {
+  display: none;
+}
+
+.overlay-up-full-enter-to ~ .overlay-top {
+  height: 0;
+}
+
+.overlay-up-full-leave-active ~ .overlay-top {
+  transition-timing-function: ease;
+}
+
+.overlay-up-full-enter ~ .overlay-top,
+.overlay-up-full-enter-active ~ .overlay-top,
+.overlay-up-full-enter-to ~ .overlay-top {
+  transition-duration: unset !important;
+  height: 100vh;
+}
+
+.overlay-up-full-enter-active,
+.overlay-up-full-leave-active {
+  transition-duration: var(--transition-duration);
+}
 </style>
