@@ -6,3 +6,4 @@ dist
 pnp-e2e
 .cache
 src/.temp
+.DS_Store
