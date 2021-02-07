@@ -1,23 +1,32 @@
 <template>
-  <transition name="fade" appear>
-    <main>
-      <slot />
-    </main>
-  </transition>
+  <div class="layout">
+    <main-menu />
+    <transition name="fade">
+      <router-view/> 
+    </transition>
+  </div>
 </template>
 
+<script>
+  import MainMenu from '~/components/MainMenu';
+  export default {
+    components: {
+      MainMenu,
+    },
+  };
+</script>
+
 <style>
-.fade-leave-active {
-    position: absolute;
-    top: 104px;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-/* .fade-leave {
-  opacity: 1;
-} */
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
+  .fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+  }
+
+  .fade-enter-active {
+    transition-delay: 0.5s;
+  }
+
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
 </style>

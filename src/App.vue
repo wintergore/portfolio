@@ -1,37 +1,24 @@
-<template>
-  <MainLayout>
-    <!-- a wrapper for slot is needed -->
-    <router-view />
-  </MainLayout>
+<template>                                                                                                                                             
+  <div id="app">
+    <component v-bind:is="layouts[layout]"/>
+  </div>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
-    siteDescription
-  }
-}
-</static-query>
-
 <script>
-import MainLayout from "~/layouts/Main.vue";
-
-export default {
-  components: {
-    MainLayout,
-  },
-  metaInfo() {
-    return {
-      title: this.$static.metadata.siteName,
-      meta: [
-        {
-          key: "description",
-          name: "description",
-          content: this.$static.metadata.siteDescription,
+  import DefaultLayout from '~/layouts/Default';
+  export default {
+    props: {
+      layout: {
+        type: String,
+        default: 'default',
+      },
+    },
+    data () {
+      return {
+        layouts: {
+          default: DefaultLayout,
         },
-      ],
-    };
-  },
-};
+      };
+    },
+  };
 </script>
