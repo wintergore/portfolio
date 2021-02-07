@@ -51,7 +51,7 @@ body {
 
 :root {
   --overlay-bg: #1867c0;
-  --transition-duration: 0.35s;
+  --transition-duration: 0.2s;
 }
 
 /* overlay-down */
