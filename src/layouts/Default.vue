@@ -1,9 +1,9 @@
 <template>
   <div class="layout">
     <main-menu />
-    <vue-page-transitions name="fade">
+    <transition name="fade">
       <router-view/> 
-    </vue-page-transitions>
+    </transition>
   </div>
 </template>
 
